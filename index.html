@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Zounds Javascript / Typescript Audio Library</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <link href="css/rainbow.css" rel="stylesheet" type="text/css" />
+    <script src="zounds.min.js"></script>
+    <script src="Scripts/rainbow-custom.min.js"></script>
+
+    <!-- the next line should be included in your static setup or, at least, on the page like this.
+    <script>
+        var zounds = new Zounds.Zounds();
+    </script>-->
+    <!--the following lines load sounds in a way that pre-caches them without playing,
+        can be called on the page like this or in your game scene controller, etc... -->
+    <script>
+        var tiktok = zounds.load("sounds/TickTock.mp3");
+    </script>
+</head>
+<body>
+    <h1>Zounds Javascript / Typescript Audio Library</h1>
+    <p>Zounds is a javascript / typescript Audio Library that can add simple responsive sounds to your website or provide an audio engine for an entire javascript game. </p>
+    <p>Zounds works with <a href="https://caniuse.com/#feat=audio-api">all browsers that support the Web Audio API</a> whist encapsulating that API's asynchronous nature.</p>
+    <p>The <a href="https://gitlab.com/dave.ursa/Zounds/raw/master/zounds.js">non-minified version</a> has a full set of JSDoc comments.</p>
+    <h2>What can it do?</h2>
+    <ul>
+        <li>Add simple noises to simple pages.
+        <li> ...or add rich audio to larger single page applications like furl / unfurl noises on your menus, or add outcome relevant noises to popups.</li>
+        <li>Play multiple sounds at once.</li>
+        <li>Play mp3, ogg, or pretty much any other audio mime type the internet cares about.</li>
+        <li>Invisibly handle caching on a forgiving and just-in-time basis but also allow you to manually pre-cache as required.</li>
+        <li> ... and register a call back on the outcome of the combination of sounds precached.</li>
+        <li>Add anoying elevator music to your site and then stop it (if you're feeling charitable).</li>
+        <li>Make sure that as much of the internet goes boing as possible.</li>
+        <li>Permissive (MIT) <a href="https://gitlab.com/dave.ursa/Zounds/blob/master/LICENSE">open source licence</a></li>
+    </ul>
+
+    <span class="separator"></span>
+    <h2>So.... Gime a simple example!</h2>
+    <div id="non-cached">
+        <label>This button loads and plays a sound on demand.</label>
+        <button class="btn-noise" onclick="zounds.playURL('sounds/boing.mp3');">Load and Play</button>
+    </div>
+    <div>
+        <div class="inlineCode">
+            <p>For it to work you need to <a href="https://gitlab.com/dave.ursa/Zounds/raw/master/zounds.min.js">download</a> and import the zounds script in your html head: </p>
+        </div>
+        <div class="inlineCode">
+            <pre><code data-language="html"><script src="zounds.min.js"></script></code></pre>
+        </div>
+    </div>
+    <div>
+        <div class="inlineCode">
+            <p>Give the button the following onclick attribute:</p>
+        </div>
+        <div class="inlineCode">
+            <pre><code data-language="html">onclick="zounds.playURL('sounds/boing.mp3');"</code></pre>
+        </div>
+    </div>
+    <p>..and that's it. Zounds will cache the sound on first use, any other use of the same URL through Zounds will use that cache.</p>
+
+    <h2>Can I precache the sounds?</h2>
+    <div id="pre-cached">
+        <label>This button plays a precached sound.</label>
+        <button class="btn-noise" onclick="var tikInstance = tiktok.play();">Pre-cached sound</button>
+    </div>
+    <div>
+        <div class="inlineCode">
+            <p> Add this script in the header: </p>
+        </div>
+        <div class="inlineCode">
+            <pre><code data-language="html"><script>
+    var tiktok = zounds.load("sounds/TickTock.mp3");
+</script></code></pre>
+        </div>
+    </div>
+    <div>
+        <div class="inlineCode">
+            <p>Give the button the following attribute:</p>
+        </div>
+        <div class="inlineCode">
+            <pre><code data-language="html">onclick="tiktok.play();"</code></pre>
+        </div>
+    </div>
+    <p>What's more if the sound is still being loaded when this is clicked, it will play as soon as it can.
+        Alternatively there is also a <a href="https://gitlab.com/dave.ursa/Zounds/blob/master/zounds.ts#L145" target="_blank">method to register a callback</a> to get zounds to notify you when it's done, so you can hold something up till the sounds are ready.
+    </p>
+
+    <span class="separator"></span>
+    <div class="go-get">
+        Grab the <a href="https://gitlab.com/dave.ursa/Zounds/raw/master/zounds.min.js">.min.js file here.</a><br />
+        Grab the <a href="https://gitlab.com/dave.ursa/Zounds/raw/master/zounds.js">.js file with JSDoc comments here.</a><br />
+        See the <a href="https://gitlab.com/dave.ursa/Zounds">Git project at Gitlab</a>
+    </div>
+</body>
+</html>
